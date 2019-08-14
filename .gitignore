@@ -1,0 +1,7 @@
+*.
+package-lock.json
+
+# We use dotenv-flow (so .env is essentially an example)
+!.env
+# Need .gitignore
+!.gitignore

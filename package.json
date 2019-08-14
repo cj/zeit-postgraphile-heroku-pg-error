@@ -1,0 +1,47 @@
+{
+  "name": "zeit-postgraphile-heroku-pg-error",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "node": "10.x",
+    "npm": "6.x"
+  },
+  "scripts": {
+    "now-build": "run-s db:migrate build",
+    "dev": "run-p graphql:server next:dev",
+    "next:dev": "next dev",
+    "build": "run-p build:next",
+    "build:next": "next build",
+    "graphql:server": "run-s graphql:docker",
+    "graphql:docker": "dotenv -- docker-compose --file graphql/server/docker-compose.yml up",
+    "knex": "ts-node -r dotenv-flow/config -r esm $(npm bin)/knex --knexfile ./knexfile.ts",
+    "db:migrate": "run-s \"knex -- migrate:latest\"",
+    "db:migrate:up": "run-s \"knex -- migrate:up\"",
+    "db:migrate:down": "run-s \"knex -- migrate:down\"",
+    "postinstall": "patch-package"
+  },
+  "keywords": [],
+  "author": "CJ Lazell",
+  "license": "MIT",
+  "dependencies": {
+    "knex": "^0.19.1",
+    "knex-migrate-sql-file": "^1.0.3",
+    "next": "^9.0.3",
+    "now": "^16.1.1",
+    "patch-package": "^6.1.2",
+    "pg": "^7.12.1",
+    "postgraphile": "^4.4.3",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.1",
+    "dotenv-cli": "^2.0.1",
+    "dotenv-flow": "^3.0.0",
+    "esm": "^3.2.25",
+    "npm-run-all": "^4.1.5",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.3"
+  }
+}

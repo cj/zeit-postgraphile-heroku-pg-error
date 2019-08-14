@@ -1,0 +1,13 @@
+version: '3.6'
+services:
+  zeit_postgraphile_heroku_pg_error_postgres:
+    image: postgres:11.4
+    restart: always
+    ports:
+      - '${DOCKER_DATABASE_PORT}:5432'
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: zeit-postgraphile-heroku-pg-error
+volumes:
+  db_data:
